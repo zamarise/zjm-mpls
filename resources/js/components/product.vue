@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <ValidationObserver v-slot="{ handleSubmit, reset }">
+    <ValidationObserver v-slot="{ handleSubmit, reset }" ref="form">
       <form @submit.prevent="handleSubmit(submitForm)">
         <label for="quantity">Qty*</label>
         <ValidationProvider
@@ -281,24 +281,6 @@
         </div>
 
         <div class="form-row">
-          <!-- <div class="col-md-4">
-            <label for="creditCardName">Name on card</label>
-            <ValidationProvider rules="required" v-slot="{ classes, errors }">
-              <input
-                type="text"
-                v-model.trim="form.payment.fullName"
-                class="form-control"
-                id="creditCardName"
-              />
-              <div class="control" :class="classes">
-                <span>{{ errors[0] }}</span>
-              </div>
-            </ValidationProvider>
-            <small class="text-muted">
-              Full name as displayed on card
-            </small>
-          </div> -->
-
           <div class="col-md-4">
             <label for="payment_credit_card_number">Credit card number</label>
             <ValidationProvider rules="required" v-slot="{ classes, errors }">
@@ -328,22 +310,6 @@
               </div>
             </ValidationProvider>
           </div>
-
-          <!-- <div class="col-md-2">
-            <label for="creditCardCVV">CVV</label>
-            <ValidationProvider rules="required" v-slot="{ classes, errors }">
-              <input
-                type="text"
-                v-model.trim="form.payment.creditCardCVV"
-                class="form-control"
-                id="creditCardCVV"
-                maxlength="4"
-              />
-              <div class="control" :class="classes">
-                <span>{{ errors[0] }}</span>
-              </div>
-            </ValidationProvider>
-          </div> -->
         </div>
 
         <hr class="mb-4" />
@@ -428,12 +394,30 @@ export default {
       this.form.total = (quantity * price).toFixed(2);
     },
 
+    clearForm() {
+      this.form.first_name = '';
+      this.form.last_name = '';
+      this.form.email = '';
+      this.form.phone = '';
+      this.form.address_street1 = '';
+      this.form.address_street2 = '';
+      this.form.address_city = '';
+      this.form.address_state = '';
+      this.form.address_zip = '';
+      this.form.payment_credit_card_number = '';
+      this.form.payment_credit_card_expiration = '';
+      this.form.quantity = '';
+      this.form.total = '';
+    },
+
     submitForm() {
       this.submitting = true;
       axios
         .post('api/magic', this.form)
         .then(response => {
           alert('Your order has been placed!');
+          this.clearForm();
+          this.$refs.form.reset();
         })
         .catch(error => {
           console.error(error);
