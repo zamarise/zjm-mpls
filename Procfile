@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-nginx public/
+web: vendor/bin/heroku-php-nginx -C .docker/nginx/nginx_template_prod.conf public/
