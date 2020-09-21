@@ -24,9 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //  TODO: WIP - May need to uncomment this for heroku deployment
-        // if (env('APP_ENV') !== 'local') {
-        //     URL::forceScheme('https');
-        // }
+        if (env('APP_ENV') === 'production') {
+            URL::forceScheme('https');
+        } else {
+            return;
+        }
     }
 }
