@@ -87,3 +87,4 @@ Once you're in the docker conatiner run `php artisan route:list` to see a list o
 - Don't put product page behidn auth?
 - Add backend validation of request
 - Deploy docker images to heroku via circleci
+- Some form fields should only accept numbers and not letters
