@@ -34,14 +34,31 @@ class MagicController extends Controller
     public function store(Request $request)
     {
         // create a magic potion order
+
+        $errorMessage = 'Error: Magic potion order may not exceed 3 magic potions per customer in a given month.';
+
+        try {
+            // get count of orders for customer for given month
             // Note: if user_id was on magics table, we would do a check on the user_id instead of email
             // TODO: Do check on address too?
+            $databaseQuantity = Magic::where('email', '=', $request->email)
+                ->whereBetween('created_at', [Carbon::today()->startOfMonth(), Carbon::today()->now()])
+                ->sum('quantity');
 
-        // TODO: Use first or create instead?
-        // $magic = Magic::firstOrCreate($request->all()); 
+            $attemptedQuantity = $databaseQuantity + $request->quantity;
 
-        // TODO: Add logic here to check if customer has not exceeded 3 MPs for a given month prior to adding order to DB
-        return response()->json($magic, 201);
+            if ($databaseQuantity >= 3) {
+                throw new Exception($errorMessage);
+            }
+
+            if ($attemptedQuantity > 3) {
+                throw new Exception($errorMessage);
+            }
+
+            $magic = Magic::create($request->all());
+            return response()->json($magic, 201);
+        } catch (Exception $error) {
+            return response()->json(['error' => $error->getMessage()], 403);
     }
 
     /**
