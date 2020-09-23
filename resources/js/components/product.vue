@@ -415,13 +415,13 @@ export default {
       axios
         .post('api/magic', this.form)
         .then(response => {
-          alert('Your order has been placed!');
+          window.alert('Your order has been placed!');
           this.clearForm();
           this.$refs.form.reset();
         })
         .catch(error => {
           console.error(error);
-          alert(`${error.response.data.error}`);
+          window.alert(`${error.response.data.error}`);
         })
         .finally(() => {
           this.submitting = false;
