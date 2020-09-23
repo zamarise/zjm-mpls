@@ -421,6 +421,7 @@ export default {
         })
         .catch(error => {
           console.error(error);
+          alert(`${error.response.data.error}`);
         })
         .finally(() => {
           this.submitting = false;
