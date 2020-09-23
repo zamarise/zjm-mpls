@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Magic;
+use Carbon\Doctrine\CarbonDoctrineType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MagicController extends Controller
 {
