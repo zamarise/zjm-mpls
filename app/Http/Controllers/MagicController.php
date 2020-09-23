@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 class MagicController extends Controller
 {
     // TODO: Add authentication
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:api')->except(['index', 'show']);
+    // }
+
     /**
      * Display a listing of the resource.
      *
