@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class MagicController extends Controller
 {
+    // TODO: Add authentication
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +29,8 @@ class MagicController extends Controller
     public function store(Request $request)
     {
         // create a magic potion order
-        $magic = Magic::create($request->all());
+            // Note: if user_id was on magics table, we would do a check on the user_id instead of email
+            // TODO: Do check on address too?
 
         // TODO: Use first or create instead?
         // $magic = Magic::firstOrCreate($request->all()); 
