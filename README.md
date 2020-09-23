@@ -88,4 +88,5 @@ Once you're in the docker conatiner run `php artisan route:list` to see a list o
 - Add backend validation of request
 - Deploy docker images to heroku via circleci
 - Some form fields should only accept numbers and not letters
-- Add logic to MagicController for checking that customer has not exceeded 3 orders prior to adding to the database.
+- ~~Add logic to MagicController for checking that customer has not exceeded 3 orders prior to adding to the database.~~
+- Add API authentication using Laravel Passport
