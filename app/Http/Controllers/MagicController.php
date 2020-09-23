@@ -64,6 +64,7 @@ class MagicController extends Controller
             return response()->json($magic, 201);
         } catch (Exception $error) {
             return response()->json(['error' => $error->getMessage()], 403);
+        }
     }
 
     /**
