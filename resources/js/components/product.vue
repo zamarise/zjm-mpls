@@ -9,7 +9,7 @@
                 <img
                   class="card-img-top rounded mx-auto d-block"
                   style="max-width: 24rem; max-height: 100%;"
-                  src="/images/product-01.jpg"
+                  src="/images/product-01.jpeg"
                   alt="Magic Potion"
                 />
               </div>
